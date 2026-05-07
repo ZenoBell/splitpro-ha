@@ -1,0 +1,92 @@
+add_expense:
+  name: Add Expense
+  description: Create a new expense in SplitPro directly from Home Assistant.
+  fields:
+    expense_name:
+      name: Name
+      description: "Description of the expense, e.g. 'Dinner at Mario's'"
+      required: true
+      example: "Groceries"
+      selector:
+        text:
+    expense_amount:
+      name: Amount
+      description: Total amount in major currency units (e.g. 45.50 for $45.50)
+      required: true
+      example: 45.50
+      selector:
+        number:
+          min: 0.01
+          max: 999999
+          step: 0.01
+          mode: box
+    participants:
+      name: Participants
+      description: List of participant email addresses (including yourself)
+      required: true
+      example: '["alice@example.com", "bob@example.com"]'
+      selector:
+        object:
+    expense_currency:
+      name: Currency
+      description: ISO 4217 currency code
+      required: false
+      default: USD
+      example: EUR
+      selector:
+        text:
+    expense_category:
+      name: Category
+      description: Expense category
+      required: false
+      default: general
+      example: food
+      selector:
+        select:
+          options:
+            - general
+            - food
+            - transport
+            - utilities
+            - entertainment
+            - health
+            - shopping
+            - travel
+            - rent
+            - other
+    split_equally:
+      name: Split Equally
+      description: Divide the expense equally among all participants
+      required: false
+      default: true
+      selector:
+        boolean:
+    group_id:
+      name: Group ID
+      description: SplitPro group ID (find it in your group's URL)
+      required: false
+      selector:
+        text:
+    paid_by_email:
+      name: Paid By
+      description: Email of who paid (defaults to your configured account)
+      required: false
+      selector:
+        text:
+    expense_date:
+      name: Date
+      description: Date of the expense in YYYY-MM-DD format (defaults to today)
+      required: false
+      selector:
+        date:
+
+delete_expense:
+  name: Delete Expense
+  description: Soft-delete an expense from SplitPro (can be seen in activity feed).
+  fields:
+    expense_id:
+      name: Expense ID
+      description: The ID of the expense to delete (find it in the sensor attributes)
+      required: true
+      selector:
+        text:

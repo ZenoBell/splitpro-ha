@@ -1,0 +1,49 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to SplitPro",
+        "description": "Enter your self-hosted SplitPro URL and the HA API key you added to your .env file.",
+        "data": {
+          "url": "SplitPro URL (e.g. https://splitpro.example.com)",
+          "api_key": "HA API Key (HA_API_KEY from .env)",
+          "user_email": "Your SplitPro account email",
+          "scan_interval": "Polling interval (minutes)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot reach SplitPro. Check the URL and that the server is running.",
+      "invalid_auth": "Invalid API key. Make sure HA_API_KEY in your .env matches what you entered.",
+      "user_not_found": "No SplitPro user found with that email address.",
+      "unknown": "Unexpected error. Check the Home Assistant logs for details."
+    },
+    "abort": {
+      "already_configured": "This SplitPro account is already configured."
+    }
+  },
+  "services": {
+    "add_expense": {
+      "name": "Add Expense",
+      "description": "Create a new expense in SplitPro.",
+      "fields": {
+        "expense_name": { "name": "Name", "description": "Description of the expense (e.g. 'Dinner at Mario\\'s')" },
+        "expense_amount": { "name": "Amount", "description": "Total amount in major currency units (e.g. 45.50)" },
+        "participants": { "name": "Participants", "description": "List of participant email addresses" },
+        "expense_currency": { "name": "Currency", "description": "ISO 4217 currency code (default: USD)" },
+        "expense_category": { "name": "Category", "description": "Category (food, transport, utilities, etc.)" },
+        "split_equally": { "name": "Split Equally", "description": "Split the expense equally among all participants" },
+        "group_id": { "name": "Group ID", "description": "Optional: SplitPro group ID to attach this expense to" },
+        "paid_by_email": { "name": "Paid By", "description": "Email of who paid (defaults to your account email)" },
+        "expense_date": { "name": "Date", "description": "Date of the expense (YYYY-MM-DD, defaults to today)" }
+      }
+    },
+    "delete_expense": {
+      "name": "Delete Expense",
+      "description": "Soft-delete an expense from SplitPro.",
+      "fields": {
+        "expense_id": { "name": "Expense ID", "description": "The ID of the expense to delete" }
+      }
+    }
+  }
+}
