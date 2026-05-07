@@ -1,5 +1,7 @@
 # SplitPro Home Assistant Integration
 
+> ⚠️ **Disclaimer:** This was fully vibe coded with AI assistance. It works great for my use case but there are likely bugs, edge cases, and probably security issues I haven't caught. I'm running it exclusively on my local LAN with no exposure to the internet so I'm personally fine with that — but please keep this in mind before deploying it in a more exposed setup. Code review, improvements, and bug reports are very welcome!
+
 This custom component connects Home Assistant to a self-hosted [SplitPro](https://github.com/oss-apps/split-pro) instance. It polls the `/api/ha/summary` endpoint on a configurable schedule and exposes your expense-sharing balances as sensors. It also registers two services (`splitpro.add_expense` and `splitpro.delete_expense`) so automations can create or remove expenses, and fires HA events whenever an expense is added or deleted.
 
 ---
